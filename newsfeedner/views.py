@@ -7,7 +7,7 @@ from .utils import STOPWORDS, MSK, get_today_midnight
 
 
 class MainPage(ListView):
-    template_name = 'rss/main_page.html'
+    template_name = 'newsfeedner/main_page.html'
     context_object_name = 'mainpage_data'
 
     paginate_by = 20
@@ -44,7 +44,7 @@ class MainPage(ListView):
 
 
 class EntityDetail(ListView):
-    template_name = 'rss/entity_detail.html'
+    template_name = 'newsfeedner/entity_detail.html'
     context_object_name = 'entity_data'
     paginate_by = 20
 
@@ -64,7 +64,7 @@ class EntityDetail(ListView):
 
 
 class EntityClassList(ListView):
-    template_name = 'rss/ent_class.html'
+    template_name = 'newsfeedner/ent_class.html'
     context_object_name = 'ent_class_data'
     paginate_by = 20
 
@@ -89,14 +89,14 @@ class EntityClassList(ListView):
         ent_class = self.kwargs['ent_class']
         context['ent_class'] = ent_class
         context['ent_class_name'] = ent_class_names[ent_class]
-        context['wc_image'] = f'rss/wc-{ent_class}.png'
+        context['wc_image'] = f'newsfeedner/wc-{ent_class}.png'
         return context
 
 
 class WordClouds(TemplateView):
-    template_name = 'rss/wordclouds.html'
+    template_name = 'newsfeedner/wordclouds.html'
 
 
 class AboutView(TemplateView):
-    template_name = 'rss/about.html'
+    template_name = 'newsfeedner/about.html'
 
