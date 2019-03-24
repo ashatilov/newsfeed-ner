@@ -1,0 +1,90 @@
+{% extends 'rss/base.html' %}
+{% load bootstrap_pagination %}
+
+{% block main %}
+<div class="container py-3">
+
+  <div class="row mb-2 justify-content-center text-muted">
+  Последнее обновление в {{ last_fetched_at }}
+  </div>
+
+  <div class="row">
+    <div class="container col-md-8 col-sm-6">
+      <div class="row">
+        <ul class="list-group shadow">
+          {% for obj in mainpage_data %}
+          <li class="list-group-item">
+            {% for d in obj.title_json %}
+            {% if d.entity_class == "PER" %}
+            <a href="{% url 'entity_detail' d.entity_translit %}" class="per"> {{ d.words }} </a>
+            {% elif d.entity_class == "LOC" %}
+            <a href="{% url 'entity_detail' d.entity_translit %}" class="loc"> {{ d.words }} </a>
+            {% elif d.entity_class == "ORG" %}
+            <a href="{% url 'entity_detail' d.entity_translit %}" class="org"> {{ d.words }} </a>
+            {% else %}
+            {{ d.words }}
+            {% endif %}
+            {% endfor %}
+            <br>
+            <span class="small" style="padding-right:1em">{{ obj.published_parsed|time:"H:i" }}</span><a class="text-muted small"
+              href="{{ obj.url }}" target="_blank">{{ obj.feed.name }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      {% if is_paginated %}
+        <div class="row mt-3 justify-content-center">
+          {% bootstrap_paginate page_obj range=10 show_prev_next="true" show_first_last="true" extra_pagination_classes="pagination-sm" %}
+        </div>
+      {% endif %}
+      
+    </div>
+
+    <div class="container col-md-4 col-sm-6">
+      <div class="mb-1 justify-content-center text-center">
+      <strong>Наиболее часто упоминаемые<br>сегодня в новостных заголовках</strong>
+      </div>
+
+      <div class="card m-4 shadow" style="max-width: 18rem;">
+        <div class="card-header bg-light text-center"><i class="fa fa-users"></i><span class="per font-weight-bold"><a href="{% url 'ent_class' 'PER'%}" class="link-black">Персоны</a></span></div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            {% for item in entities_dict.per %}
+            <li class="list-group-item py-1"><a href="{% url 'entity_detail' item.ent__name_translit %}" class="link-black"> 
+            {{ item.ent__name }}</a> <span class="badge badge-pill badge-light float-right"> {{ item.entities_count }} </span></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <div class="card m-4 shadow" style="max-width: 18rem;">
+        <div class="card-header bg-light text-center"><i class="fas fa-globe-europe"></i><span class="loc font-weight-bold"><a href="{% url 'ent_class' 'LOC'%}" class="link-black">Локации</a></span></div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            {% for item in entities_dict.loc %}
+            <li class="list-group-item py-1"> <a href="{% url 'entity_detail' item.ent__name_translit %}" class="link-black">
+            {{ item.ent__name }}</a> <span class="badge badge-pill badge-light float-right"> {{ item.entities_count }} </span></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <div class="card m-4 shadow" style="max-width: 18rem;">
+        <div class="card-header bg-light text-center"><i class="fa fa-sitemap"></i><span class="org font-weight-bold"><a href="{% url 'ent_class' 'ORG'%}" class="link-black">Организации</a></span></div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            {% for item in entities_dict.org %}
+            <li class="list-group-item py-1"> <a href="{% url 'entity_detail' item.ent__name_translit %}" class="link-black"> 
+            {{ item.ent__name }}</a> <span class="badge badge-pill badge-light float-right"> {{ item.entities_count }} </span></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+{% endblock main %}

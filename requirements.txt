@@ -1,0 +1,11 @@
+Django==2.1.7
+django-crontab==0.7.1
+django-bootstrap-pagination==1.7.0
+psycopg2==2.7.7
+feedparser==5.2.1
+beautifulsoup4==4.7.1
+transliterate==1.10.2
+deeppavlov==0.1.6
+Pillow==5.4.1
+matplotlib==3.0.3
+wordcloud==1.5.0

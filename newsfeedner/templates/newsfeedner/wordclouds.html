@@ -1,0 +1,32 @@
+{% extends 'rss/base.html' %}
+{% load static %}
+{% block main %}
+<section class="py-5">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-lg-4">
+        <div class="text-center my-2"><a href="{% url 'ent_class' 'PER'%}" class="per link-black font-weight-bold">Персоны</a></div>
+        <div class="card mb-lg-0 shadow">
+          <img src="{% static "rss/wc-PER.png" %}" class="card-img-bottom img-fluid" alt="Persons world cloud">
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="text-center my-2"><a href="{% url 'ent_class' 'LOC'%}" class="loc link-black font-weight-bold">Локации</a></div>
+        <div class="card mb-lg-0 shadow">
+          <img src="{% static "rss/wc-LOC.png" %}" class="card-img-bottom img-fluid" alt="Locations world cloud">
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="text-center my-2"><a href="{% url 'ent_class' 'ORG'%}" class="org link-black font-weight-bold">Организации</a></div>
+        <div class="card mb-lg-0 shadow">
+          <img src="{% static "rss/wc-ORG.png" %}" class="card-img-bottom img-fluid" alt="Organisations world cloud">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock main %}

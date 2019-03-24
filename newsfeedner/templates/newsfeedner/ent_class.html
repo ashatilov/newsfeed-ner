@@ -1,0 +1,37 @@
+{% extends 'rss/base.html' %}
+{% load static %}
+{% load bootstrap_pagination %}
+
+{% block main %}
+
+<div class="container py-3">
+  <div class="row mb-2 justify-content-center">
+  Упоминаемые в заголовках&nbsp;<span class="font-weight-bold"> {{ ent_class_name }} </span>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 col-sm-6">
+      <ul class="list-group">
+        {% for item in ent_class_data %}
+        <li class="list-group-item py-1"><a href="{% url 'entity_detail' item.ent__name_translit %}" class="top-entities"> 
+        {{ item.ent__name }}</a> <span class="badge badge-pill badge-light float-right"> {{ item.entities_count }} </span></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="col-md-8 col-sm-6">
+      <div class="card mb-lg-0 shadow">
+        <img src="{% static wc_image %}" class="card-img-bottom img-fluid" alt="Persons world cloud">
+      </div>
+    </div>
+  </div>
+
+  {% if is_paginated %}
+    <div class="row mt-3 justify-content-center">
+        {% bootstrap_paginate page_obj range=10 show_prev_next="true" show_first_last="true" extra_pagination_classes="pagination-sm" %}
+    </div>
+  {% endif %}
+
+</div>
+
+{% endblock main %}

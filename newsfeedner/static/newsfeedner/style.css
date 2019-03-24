@@ -1,0 +1,40 @@
+body {
+    padding-top: 60px;
+}
+
+.per {
+    padding: .2em;
+    color: black;
+    border-bottom: 5px solid #BFDA83;
+}
+
+.per:hover {
+    text-decoration-line: none;
+    background-color: #BFDA83;
+}
+
+.loc {
+    padding: .2em;
+    color: black;
+    border-bottom: 5px solid #FDEF8D;
+}
+
+.loc:hover {
+    text-decoration-line: none;
+    background-color: #FDEF8D;
+}
+
+.org {
+    padding: .2em;
+    color: black;
+    border-bottom: 5px solid #96D6F2;
+}
+
+.org:hover {
+    text-decoration-line: none;
+    background-color: #96D6F2;
+}
+
+.link-black {
+    color: black;
+}
