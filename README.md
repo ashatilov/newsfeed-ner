@@ -35,30 +35,36 @@ GRANT ALL PRIVILEGES ON DATABASE newsfeed_db TO newsfeeduser;
 
 * скачать NER модель для `deeppavlov`
 
-```python
+```bash
 python -m deeppavlov install ner_rus
+```
+
+* применить migrations для django
+
+```bash
+python manage.py migrate
 ```
 
 * с помощью этой команды можно обновить ленты, базу данных и облака слов
 
-```python
+```bash
 python manage.py populate_db
 ```
 
-* добавить в `crontab` периодическое обновление базы данных (по умолчанию раз в 2 минуты - можно изменить в `settings.py` с помощью CRONJOBS)
+* добавить в `crontab` периодическое обновление базы данных (по умолчанию раз в 2 минуты - можно изменить в `settings.py` в `CRONJOBS`)
 
-```python
+```bash
 python manage.py crontab add
 ```
 
 * убрать из crontab периодическое обновление
 
-```python
+```bash
 python manage.py crontab remove
 ```
 
 * запуск сервера локально, сайт доступен по адресу http://127.0.0.1:8000
 
-```python
+```bash
 python manage.py runserver
 ```
