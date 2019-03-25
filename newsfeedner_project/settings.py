@@ -131,3 +131,6 @@ STATIC_URL = '/static/'
 CRONJOBS = [
     ('*/2 * * * *', 'newsfeedner.cron.update_feeds', [BASE_DIR])
 ]
+
+MEDIA_ROOT = 'media' 
+MEDIA_URL = '/media/'

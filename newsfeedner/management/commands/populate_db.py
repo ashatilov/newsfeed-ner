@@ -1,4 +1,7 @@
+import os
+
 from django.core.management.base import BaseCommand
+from django.conf import settings
 
 from newsfeedner.utils import FeedDownloader, generate_wordcloud
 
@@ -12,5 +15,5 @@ class Command(BaseCommand):
         downloader.get_articles()
         downloader.get_entities()
 
-        generate_wordcloud('./newsfeedner/static/newsfeedner')
+        generate_wordcloud(os.path.join(settings.BASE_DIR, settings.MEDIA_ROOT))
 

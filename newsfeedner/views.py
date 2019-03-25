@@ -89,7 +89,7 @@ class EntityClassList(ListView):
         ent_class = self.kwargs['ent_class']
         context['ent_class'] = ent_class
         context['ent_class_name'] = ent_class_names[ent_class]
-        context['wc_image'] = f'newsfeedner/wc-{ent_class}.png'
+        context['wc_image'] = f'/media/wc-{ent_class}.png'
         return context
 
 
