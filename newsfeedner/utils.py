@@ -261,6 +261,10 @@ class FeedDownloader:
         current_dict = None
         sentence_parsed = []
 
+        # if result is empty
+        if not result[1]:
+            result[1].append([])
+
         for word, (i, tag) in zip(result[0][0] + ['<END>'], enumerate(result[1][0] + ['O'])):
             if '-' in tag:
                 # if entity - clear from punctuation
