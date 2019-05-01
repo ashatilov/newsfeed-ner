@@ -202,7 +202,7 @@ class RIAparser:
                 'link': None,
                 'id': None,
             }
-            id_data = item.find('a', {'class': 'list-item__content'})
+            id_data = item.find('a', {'class': 'list-item__title'})
             id_ = id_data.get('href').split('.')[0].replace('/', '')
             feed_item['id'] = id_
 
